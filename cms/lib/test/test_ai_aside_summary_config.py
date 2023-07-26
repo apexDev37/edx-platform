@@ -5,7 +5,7 @@ Tests for AiAsideSummaryConfig class.
 
 import sys
 from unittest import TestCase
-from unittest.mock import Mock, patch
+from unittest.mock import Mock
 
 from opaque_keys.edx.keys import CourseKey, UsageKey
 
