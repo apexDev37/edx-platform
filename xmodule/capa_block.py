@@ -355,6 +355,7 @@ class ProblemBlock(
         """
         Return the studio view.
         """
+        self.runtime.service(self, 'mako').namespace_prefix = ''
         fragment = Fragment(
             self.runtime.service(self, 'mako').render_template(self.mako_template, self.get_context())
         )
