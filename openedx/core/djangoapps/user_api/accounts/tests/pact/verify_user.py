@@ -58,12 +58,12 @@ class ProviderVerificationServer(LiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        
+
         cls.PACT_URL = cls.live_server_url
 
         cls.verifier = Verifier(
             provider='edx-platform',
-            provider_base_url = cls.PACT_URL,
+            provider_base_url=cls.PACT_URL,
         )
 
     @classmethod
