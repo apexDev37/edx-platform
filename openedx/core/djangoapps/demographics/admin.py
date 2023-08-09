@@ -7,6 +7,7 @@ from django.contrib import admin
 from openedx.core.djangoapps.demographics.models import UserDemographics
 
 
+@admin.register(UserDemographics)
 class UserDemographicsAdmin(admin.ModelAdmin):
     """
     Admin for UserDemographics Model
@@ -19,4 +20,3 @@ class UserDemographicsAdmin(admin.ModelAdmin):
         model = UserDemographics
 
 
-admin.site.register(UserDemographics, UserDemographicsAdmin)

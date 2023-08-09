@@ -100,7 +100,7 @@ class EnrollmentsServiceTests(ModuleStoreTestCase):
             {'username': 'user5', 'mode': 'verified'}
 
         ]
-        self.assertQuerysetEqual(enrollments, expected_values, self.enrollment_to_dict)
+        self.assertQuerySetEqual(enrollments, expected_values, self.enrollment_to_dict)
 
     def test_get_enrollments_can_take_proctored_exams_not_enable_proctored_exams(self):
         self.course.enable_proctored_exams = False
@@ -128,7 +128,7 @@ class EnrollmentsServiceTests(ModuleStoreTestCase):
             {'username': 'user4', 'mode': 'professional'},
             {'username': 'user5', 'mode': 'verified'}
         ]
-        self.assertQuerysetEqual(enrollments, expected_values, self.enrollment_to_dict)
+        self.assertQuerySetEqual(enrollments, expected_values, self.enrollment_to_dict)
 
     def test_text_search_partial_return_some(self):
         enrollments = self.service.get_enrollments_can_take_proctored_exams(
@@ -139,7 +139,7 @@ class EnrollmentsServiceTests(ModuleStoreTestCase):
         expected_values = [
             {'username': 'user3', 'mode': 'masters'}
         ]
-        self.assertQuerysetEqual(enrollments, expected_values, self.enrollment_to_dict)
+        self.assertQuerySetEqual(enrollments, expected_values, self.enrollment_to_dict)
 
     @ddt.data('user1', 'USER1', 'LEARNER1@example.com', 'lEarNer1@eXAMPLE.com')
     def test_text_search_exact_return_one(self, text_search):
@@ -151,7 +151,7 @@ class EnrollmentsServiceTests(ModuleStoreTestCase):
         expected_values = [
             {'username': 'user1', 'mode': 'executive-education'}
         ]
-        self.assertQuerysetEqual(enrollments, expected_values, self.enrollment_to_dict)
+        self.assertQuerySetEqual(enrollments, expected_values, self.enrollment_to_dict)
 
     def test_text_search_return_none(self):
         enrollments = self.service.get_enrollments_can_take_proctored_exams(

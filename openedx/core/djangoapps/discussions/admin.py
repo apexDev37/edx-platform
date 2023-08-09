@@ -11,6 +11,7 @@ from .models import DiscussionsConfiguration
 from .models import ProviderFilter
 
 
+@admin.register(DiscussionsConfiguration)
 class DiscussionsConfigurationAdmin(SimpleHistoryAdmin):
     """
     Customize the admin interface for the discussions configuration
@@ -71,6 +72,7 @@ class DenyListFilter(AllowListFilter):
     parameter_name = 'deny'
 
 
+@admin.register(ProviderFilter)
 class ProviderFilterAdmin(StackedConfigModelAdmin):
     """
     Customize the admin interface for the ProviderFilter
@@ -86,5 +88,3 @@ class ProviderFilterAdmin(StackedConfigModelAdmin):
         DenyListFilter,
     )
 
-admin.site.register(DiscussionsConfiguration, DiscussionsConfigurationAdmin)
-admin.site.register(ProviderFilter, ProviderFilterAdmin)

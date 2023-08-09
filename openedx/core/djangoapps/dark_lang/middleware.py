@@ -126,7 +126,7 @@ class DarkLangMiddleware(MiddlewareMixin):
         Remove any language that is not either in ``self.released_langs`` or ``self.beta_langs`` (if enabled) or
         a territory of one of those languages.
         """
-        accept = request.META.get('HTTP_ACCEPT_LANGUAGE', None)
+        accept = request.headers.get('accept-language', None)
         if accept is None or accept == '*':
             return
 

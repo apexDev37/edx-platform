@@ -7,6 +7,7 @@ from django.contrib import admin
 from .models import CourseNotificationPreference, Notification
 
 
+@admin.register(Notification)
 class NotificationAdmin(admin.ModelAdmin):
     """
     Admin for Notifications
@@ -16,6 +17,7 @@ class NotificationAdmin(admin.ModelAdmin):
     list_filter = ('app_name',)
 
 
+@admin.register(CourseNotificationPreference)
 class CourseNotificationPreferenceAdmin(admin.ModelAdmin):
     """
     Admin for Course Notification Preferences
@@ -30,5 +32,3 @@ class CourseNotificationPreferenceAdmin(admin.ModelAdmin):
         return obj.user.username
 
 
-admin.site.register(Notification, NotificationAdmin)
-admin.site.register(CourseNotificationPreference, CourseNotificationPreferenceAdmin)

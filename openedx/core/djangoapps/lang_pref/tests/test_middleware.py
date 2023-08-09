@@ -148,7 +148,7 @@ class TestUserPreferenceMiddleware(CacheIsolationTestCase):
 
         self.middleware.process_request(self.request)
 
-        accept_lang_result = self.request.META.get('HTTP_ACCEPT_LANGUAGE')
+        accept_lang_result = self.request.headers.get('accept-language')
         if accept_lang_result:
             accept_lang_result = parse_accept_lang_header(accept_lang_result)
 

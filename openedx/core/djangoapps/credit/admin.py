@@ -16,6 +16,7 @@ from openedx.core.djangoapps.credit.models import (
 )
 
 
+@admin.register(CreditCourse)
 class CreditCourseAdmin(admin.ModelAdmin):
     """Admin for credit courses. """
     list_display = ('course_key', 'enabled',)
@@ -26,6 +27,7 @@ class CreditCourseAdmin(admin.ModelAdmin):
         model = CreditCourse
 
 
+@admin.register(CreditProvider)
 class CreditProviderAdmin(admin.ModelAdmin):
     """Admin for credit providers. """
     list_display = ('provider_id', 'display_name', 'active',)
@@ -36,6 +38,7 @@ class CreditProviderAdmin(admin.ModelAdmin):
         model = CreditProvider
 
 
+@admin.register(CreditEligibility)
 class CreditEligibilityAdmin(admin.ModelAdmin):
     """Admin for credit eligibility. """
     list_display = ('course', 'username', 'deadline')
@@ -45,6 +48,7 @@ class CreditEligibilityAdmin(admin.ModelAdmin):
         model = CreditEligibility
 
 
+@admin.register(CreditRequest)
 class CreditRequestAdmin(admin.ModelAdmin):
     """Admin for credit requests. """
     list_display = ('provider', 'course', 'status', 'username')
@@ -56,6 +60,7 @@ class CreditRequestAdmin(admin.ModelAdmin):
         model = CreditRequest
 
 
+@admin.register(CreditRequirement)
 class CreditRequirementAdmin(admin.ModelAdmin):
     """ Admin for CreditRequirement. """
     list_display = ('course', 'namespace', 'name', 'display_name', 'active',)
@@ -66,6 +71,7 @@ class CreditRequirementAdmin(admin.ModelAdmin):
         model = CreditRequirement
 
 
+@admin.register(CreditRequirementStatus)
 class CreditRequirementStatusAdmin(admin.ModelAdmin):
     """ Admin for CreditRequirementStatus. """
     list_display = ('username', 'requirement', 'status',)
@@ -75,10 +81,4 @@ class CreditRequirementStatusAdmin(admin.ModelAdmin):
         model = CreditRequirementStatus
 
 
-admin.site.register(CreditCourse, CreditCourseAdmin)
-admin.site.register(CreditProvider, CreditProviderAdmin)
-admin.site.register(CreditEligibility, CreditEligibilityAdmin)
-admin.site.register(CreditRequest, CreditRequestAdmin)
 admin.site.register(CreditConfig)
-admin.site.register(CreditRequirement, CreditRequirementAdmin)
-admin.site.register(CreditRequirementStatus, CreditRequirementStatusAdmin)

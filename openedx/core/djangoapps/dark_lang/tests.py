@@ -82,7 +82,7 @@ class DarkLangMiddlewareTests(CacheIsolationTestCase):
         Assert that the HTML_ACCEPT_LANGUAGE header in request
         is equal to value
         """
-        assert value == request.META.get('HTTP_ACCEPT_LANGUAGE', UNSET)
+        assert value == request.headers.get('accept-language', UNSET)
 
     def test_empty_accept(self):
         self.assertAcceptEquals(UNSET, self.process_middleware_request())

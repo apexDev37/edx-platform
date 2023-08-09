@@ -37,7 +37,7 @@ class CrawlersConfig(ConfigurationModel):
         if not current.enabled:
             return False
 
-        req_user_agent = request.META.get('HTTP_USER_AGENT')
+        req_user_agent = request.headers.get('user-agent')
         crawler_agents = current.known_user_agents.split(",")
 
         # If there was no user agent detected or no crawler agents configured,

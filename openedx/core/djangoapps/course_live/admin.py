@@ -7,6 +7,7 @@ from simple_history.admin import SimpleHistoryAdmin
 from openedx.core.djangoapps.course_live.models import CourseLiveConfiguration
 
 
+@admin.register(CourseLiveConfiguration)
 class CourseLiveConfigurationAdmin(SimpleHistoryAdmin):
     """
     Admin interface for the course live configuration
@@ -22,4 +23,3 @@ class CourseLiveConfigurationAdmin(SimpleHistoryAdmin):
     )
 
 
-admin.site.register(CourseLiveConfiguration, CourseLiveConfigurationAdmin)

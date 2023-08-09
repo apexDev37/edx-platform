@@ -11,6 +11,7 @@ from .forms import IPFilterForm, RestrictedCourseForm
 from .models import CountryAccessRule, IPFilter, RestrictedCourse
 
 
+@admin.register(IPFilter)
 class IPFilterAdmin(ConfigurationModelAdmin):
     """Admin for blacklisting/whitelisting specific IP addresses"""
     form = IPFilterForm
@@ -34,6 +35,7 @@ class CountryAccessRuleInline(admin.StackedInline):
         return True
 
 
+@admin.register(RestrictedCourse)
 class RestrictedCourseAdmin(admin.ModelAdmin):
     """Admin for configuring course restrictions. """
     inlines = [CountryAccessRuleInline]
@@ -41,5 +43,3 @@ class RestrictedCourseAdmin(admin.ModelAdmin):
     search_fields = ('course_key',)
 
 
-admin.site.register(IPFilter, IPFilterAdmin)
-admin.site.register(RestrictedCourse, RestrictedCourseAdmin)
