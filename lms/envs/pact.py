@@ -12,3 +12,4 @@ MOCK_USERNAME = 'Mock User'
 
 ######################### Add Authentication Middleware for Pact Verification Calls #########################
 MIDDLEWARE = MIDDLEWARE + ['common.test.pacts.middleware.AuthenticationMiddleware', ]
+MIDDLEWARE = MIDDLEWARE + ['openedx.core.djangoapps.user_api.accounts.tests.pact.user-middleware', ]
