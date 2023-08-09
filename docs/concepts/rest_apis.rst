@@ -28,4 +28,4 @@ one before you can call the API again.
 
 .. seealso::
 
-   :doc:`how-tos/use_the_api`
+   * :doc:`/how-tos/use_the_api`

@@ -83,4 +83,4 @@ Steps
 
 .. seealso::
 
-  :doc:`concepts/rest_apis`
+   * :doc:`/concepts/rest_apis`
