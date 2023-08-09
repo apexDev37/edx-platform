@@ -48,6 +48,7 @@ class CertificateTemplateForm(forms.ModelForm):
         fields = '__all__'
 
 
+@admin.register(CertificateTemplate)
 class CertificateTemplateAdmin(admin.ModelAdmin):
     """
     Django admin customizations for CertificateTemplate model
@@ -56,6 +57,7 @@ class CertificateTemplateAdmin(admin.ModelAdmin):
     form = CertificateTemplateForm
 
 
+@admin.register(CertificateTemplateAsset)
 class CertificateTemplateAssetAdmin(admin.ModelAdmin):
     """
     Django admin customizations for CertificateTemplateAsset model
@@ -73,6 +75,7 @@ class CertificateTemplateAssetAdmin(admin.ModelAdmin):
         return super().changelist_view(request, extra_context=extra_context)
 
 
+@admin.register(GeneratedCertificate)
 class GeneratedCertificateAdmin(admin.ModelAdmin):
     """
     Django admin customizations for GeneratedCertificate model
@@ -83,6 +86,7 @@ class GeneratedCertificateAdmin(admin.ModelAdmin):
     list_display = ('id', 'course_id', 'mode', 'user')
 
 
+@admin.register(CertificateGenerationCourseSetting)
 class CertificateGenerationCourseSettingAdmin(admin.ModelAdmin):
     """
     Django admin customizations for CertificateGenerationCourseSetting model
@@ -97,6 +101,7 @@ class CertificateGenerationCommandConfigurationAdmin(ConfigurationModelAdmin):
     pass
 
 
+@admin.register(CertificateDateOverride)
 class CertificateDateOverrideAdmin(admin.ModelAdmin):
     """
     # Django admin customizations for CertificateDateOverride model
@@ -111,9 +116,4 @@ class CertificateDateOverrideAdmin(admin.ModelAdmin):
 
 
 admin.site.register(CertificateGenerationConfiguration)
-admin.site.register(CertificateGenerationCourseSetting, CertificateGenerationCourseSettingAdmin)
 admin.site.register(CertificateHtmlViewConfiguration, ConfigurationModelAdmin)
-admin.site.register(CertificateTemplate, CertificateTemplateAdmin)
-admin.site.register(CertificateTemplateAsset, CertificateTemplateAssetAdmin)
-admin.site.register(GeneratedCertificate, GeneratedCertificateAdmin)
-admin.site.register(CertificateDateOverride, CertificateDateOverrideAdmin)

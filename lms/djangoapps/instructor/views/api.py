@@ -153,7 +153,7 @@ def common_exceptions_400(func):
 
     def wrapped(request, *args, **kwargs):
         use_json = (request.is_ajax() or
-                    request.META.get("HTTP_ACCEPT", "").startswith("application/json"))
+                    request.headers.get("accept", "").startswith("application/json"))
         try:
             return func(request, *args, **kwargs)
         except User.DoesNotExist:

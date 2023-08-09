@@ -17,16 +17,19 @@ from lms.djangoapps.bulk_email.models import (
 )
 
 
+@admin.register(CourseEmail)
 class CourseEmailAdmin(admin.ModelAdmin):
     """Admin for course email."""
     readonly_fields = ('sender',)
 
 
+@admin.register(Optout)
 class OptoutAdmin(admin.ModelAdmin):
     """Admin for optouts."""
     list_display = ('user', 'course_id')
 
 
+@admin.register(CourseEmailTemplate)
 class CourseEmailTemplateAdmin(admin.ModelAdmin):
     """Admin for course email templates."""
     form = CourseEmailTemplateForm
@@ -64,6 +67,7 @@ unsupported tags will cause email sending to fail.
         return True
 
 
+@admin.register(CourseAuthorization)
 class CourseAuthorizationAdmin(admin.ModelAdmin):
     """Admin for enabling email on a course-by-course basis."""
     form = CourseAuthorizationAdminForm
@@ -81,14 +85,10 @@ To enable email for the course, check the "Email enabled" box, then click "Save"
     )
 
 
+@admin.register(DisabledCourse)
 class DisabledCourseAdmin(admin.ModelAdmin):
     """Admin for disabling bulk email on a course-by-course basis"""
     list_display = ('course_id', )
 
 
-admin.site.register(CourseEmail, CourseEmailAdmin)
-admin.site.register(Optout, OptoutAdmin)
-admin.site.register(CourseEmailTemplate, CourseEmailTemplateAdmin)
-admin.site.register(CourseAuthorization, CourseAuthorizationAdmin)
 admin.site.register(BulkEmailFlag, ConfigurationModelAdmin)
-admin.site.register(DisabledCourse, DisabledCourseAdmin)

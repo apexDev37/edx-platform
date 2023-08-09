@@ -139,7 +139,7 @@ def _get_xblock_instance_args(request, task_id):
     request_info = {'username': request.user.username,
                     'user_id': request.user.id,
                     'ip': request.META['REMOTE_ADDR'],
-                    'agent': request.META.get('HTTP_USER_AGENT', '').encode().decode('latin1'),
+                    'agent': request.headers.get('user-agent', '').encode().decode('latin1'),
                     'host': request.META['SERVER_NAME'],
                     }
 

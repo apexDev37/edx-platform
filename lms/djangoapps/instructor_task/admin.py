@@ -12,6 +12,9 @@ from .config.models import GradeReportSetting
 from .models import InstructorTask
 
 
+@admin.action(
+    description="Mark Tasks as Failed"
+)
 def mark_tasks_as_failed(modeladmin, request, queryset):  # lint-amnesty, pylint: disable=unused-argument
     queryset.update(
         task_state='FAILURE',
@@ -19,9 +22,9 @@ def mark_tasks_as_failed(modeladmin, request, queryset):  # lint-amnesty, pylint
         task_key='dummy_task_key',
     )
 
-mark_tasks_as_failed.short_description = "Mark Tasks as Failed"
 
 
+@admin.register(InstructorTask)
 class InstructorTaskAdmin(admin.ModelAdmin):  # lint-amnesty, pylint: disable=missing-class-docstring
     actions = [mark_tasks_as_failed]
     list_display = [
@@ -40,13 +43,16 @@ class InstructorTaskAdmin(admin.ModelAdmin):  # lint-amnesty, pylint: disable=mi
     ]
     raw_id_fields = ['requester']  # avoid trying to make a select dropdown
 
+    @admin.display(
+        ordering='requester__email'
+    )
+    @admin.display(
+        ordering='requester__username'
+    )
     def email(self, task):
         return task.requester.email
-    email.admin_order_field = 'requester__email'
 
     def username(self, task):
         return task.requester.username
-    email.admin_order_field = 'requester__username'
 
-admin.site.register(InstructorTask, InstructorTaskAdmin)
 admin.site.register(GradeReportSetting, ConfigurationModelAdmin)

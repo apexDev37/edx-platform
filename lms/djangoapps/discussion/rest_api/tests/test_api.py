@@ -3046,7 +3046,7 @@ class UpdateThreadTest(
             expected_event_data = {
                 'id': 'test_thread',
                 'team_id': None,
-                'url': self.request.META['HTTP_REFERER'],
+                'url': self.request.headers['referer'],
                 'user_course_roles': [],
                 'user_forums_roles': ['Student', role_name],
                 'target_username': self.user.username,

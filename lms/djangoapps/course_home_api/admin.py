@@ -10,6 +10,7 @@ from openedx.core.djangoapps.config_model_utils.admin import StackedConfigModelA
 from .models import DisableProgressPageStackedConfig
 
 
+@admin.register(DisableProgressPageStackedConfig)
 class DisableProgressPageStackedConfigAdmin(StackedConfigModelAdmin):
     """
     Stacked Config Model Admin for disable the progress page
@@ -38,4 +39,3 @@ class DisableProgressPageStackedConfigAdmin(StackedConfigModelAdmin):
         })
     )
 
-admin.site.register(DisableProgressPageStackedConfig, DisableProgressPageStackedConfigAdmin)
