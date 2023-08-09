@@ -530,13 +530,17 @@ class CourseEnrollmentCelebrationAdmin(DisableEnrollmentAdminMixin, admin.ModelA
     class Meta:
         model = CourseEnrollmentCelebration
 
+    @admin.display(
+        description='Course'
+    )
     def course(self, obj):
         return obj.enrollment.course.id
-    course.short_description = 'Course'
 
+    @admin.display(
+        description='User'
+    )
     def user(self, obj):
         return obj.enrollment.user.username
-    user.short_description = 'User'
 
 
 @admin.register(UserCelebration)

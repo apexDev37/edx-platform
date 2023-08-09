@@ -217,6 +217,9 @@ class CourseModeAdmin(admin.ModelAdmin):
         'bulk_sku'
     )
 
+    @admin.display(
+        description="Upgrade Deadline"
+    )
     def expiration_datetime_custom(self, obj):
         """adding custom column to show the expiry_datetime"""
         if obj.expiration_datetime:
@@ -224,7 +227,6 @@ class CourseModeAdmin(admin.ModelAdmin):
 
     # Display a more user-friendly name for the custom expiration datetime field
     # in the Django admin list view.
-    expiration_datetime_custom.short_description = "Upgrade Deadline"
 
 
 admin.site.register(CourseModeExpirationConfig)

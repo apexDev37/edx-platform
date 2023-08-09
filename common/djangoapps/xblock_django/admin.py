@@ -10,6 +10,7 @@ from django.utils.translation import gettext_lazy as _
 from common.djangoapps.xblock_django.models import XBlockConfiguration, XBlockStudioConfiguration, XBlockStudioConfigurationFlag  # lint-amnesty, pylint: disable=line-too-long
 
 
+@admin.register(XBlockConfiguration)
 class XBlockConfigurationAdmin(KeyedConfigurationModelAdmin):
     """
     Admin for XBlockConfiguration.
@@ -32,6 +33,7 @@ class XBlockConfigurationAdmin(KeyedConfigurationModelAdmin):
     )
 
 
+@admin.register(XBlockStudioConfiguration)
 class XBlockStudioConfigurationAdmin(KeyedConfigurationModelAdmin):
     """
     Admin for XBlockStudioConfiguration.
@@ -57,6 +59,4 @@ class XBlockStudioConfigurationAdmin(KeyedConfigurationModelAdmin):
     )
 
 
-admin.site.register(XBlockConfiguration, XBlockConfigurationAdmin)
-admin.site.register(XBlockStudioConfiguration, XBlockStudioConfigurationAdmin)
 admin.site.register(XBlockStudioConfigurationFlag, ConfigurationModelAdmin)

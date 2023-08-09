@@ -10,6 +10,7 @@ from django.contrib import admin
 from .models import AssetBaseUrlConfig, AssetExcludedExtensionsConfig
 
 
+@admin.register(AssetBaseUrlConfig)
 class AssetBaseUrlConfigAdmin(ConfigurationModelAdmin):
     """
     Basic configuration for asset base URL.
@@ -29,6 +30,7 @@ class AssetBaseUrlConfigAdmin(ConfigurationModelAdmin):
         return self.list_display
 
 
+@admin.register(AssetExcludedExtensionsConfig)
 class AssetExcludedExtensionsConfigAdmin(ConfigurationModelAdmin):
     """
     Basic configuration for asset base URL.
@@ -48,5 +50,3 @@ class AssetExcludedExtensionsConfigAdmin(ConfigurationModelAdmin):
         return self.list_display
 
 
-admin.site.register(AssetBaseUrlConfig, AssetBaseUrlConfigAdmin)
-admin.site.register(AssetExcludedExtensionsConfig, AssetExcludedExtensionsConfigAdmin)
