@@ -4,7 +4,8 @@ Contain the middleware logic needed during pact verification
 from django.contrib import auth
 from django.utils.deprecation import MiddlewareMixin
 
-User  = auth.get_user_model()
+User = auth.get_user_model()
+
 
 class AuthenticationMiddleware(MiddlewareMixin):
     """

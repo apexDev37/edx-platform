@@ -19,13 +19,14 @@ logging.basicConfig(level=logging.DEBUG)
 PACT_DIR = os.path.dirname(os.path.realpath(__file__))
 PACT_FILE = "frontend-app-profile-edx-platform.json"
 
+
 class ProviderState():
     """ Provider State for the testing profile """
 
     def account_setup(self, request):
         """ Sets up the Profile that we want to mock in accordance to our contract """
         User.objects.filter(username="staff").delete()
-        user_acc = UserFactory.create(username = "staff")
+        user_acc = UserFactory.create(username="staff")
         user_acc.profile.name = "Lemon Seltzer"
         user_acc.profile.bio = "This is my bio"
         user_acc.profile.country = "ME"
@@ -36,6 +37,7 @@ class ProviderState():
         user_acc.profile.mailing_address = "Park Ave"
         user_acc.profile.save()
         return user_acc
+
 
 @csrf_exempt
 @require_POST
@@ -49,17 +51,21 @@ def provider_state(request):
     state_setup["I have a user's basic information"](request)
     return JsonResponse({'result': state})
 
+
 class ProviderVerificationServer(LiveServerTestCase):
     """ Live Server for Pact Account Verification """
 
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        
         cls.PACT_URL = cls.live_server_url
+
         cls.verifier = Verifier(
             provider='edx-platform',
             provider_base_url = cls.PACT_URL,
         )
+
     @classmethod
     def tearDownClass(cls):
         super().tearDownClass()

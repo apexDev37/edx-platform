@@ -226,7 +226,7 @@ urlpatterns = [
     # Moved from user_api/legacy_urls.py
     path('v1/preferences/time_zones/', user_api_views.CountryTimeZoneListView.as_view(),
          ),
-    ]
+]
 
 # Provider States url for Account
 if getattr(settings, 'PROVIDER_STATES_URL', None):
@@ -238,4 +238,3 @@ if getattr(settings, 'PROVIDER_STATES_URL', None):
             name='acc-provider-state-view',
         )
     ]
-    
