@@ -85,7 +85,7 @@ def track_forum_event(request, event_name, course, obj, data, id_map=None):
     if commentable_id in id_map:
         data['category_name'] = id_map[commentable_id]["title"]
         data['category_id'] = commentable_id
-    data['url'] = request.headers.get('referer', '')
+    data['url'] = request.META.get('HTTP_REFERER', '')
     data['user_forums_roles'] = [
         role.name for role in user.roles.filter(course_id=course.id)
     ]

@@ -339,7 +339,7 @@ def load_metadata_from_youtube(video_id, request):
         try:
             # This raises an attribute error if called from the xblock yt_video_metadata handler, which passes
             # a webob request instead of a django request.
-            http_referer = request.headers.get('referer')
+            http_referer = request.META.get('HTTP_REFERER')
         except AttributeError:
             # So here, let's assume it's a webob request and access the referer the webob way.
             http_referer = request.referer
@@ -386,14 +386,14 @@ def jump_to_id(request, course_id, module_id):
     if len(items) == 0:
         raise Http404(
             "Could not find id: {} in course_id: {}. Referer: {}".format(
-                module_id, course_id, request.headers.get("referer", "")
+                module_id, course_id, request.META.get("HTTP_REFERER", "")
             ))
     if len(items) > 1:
         log.warning(
             "Multiple items found with id: %s in course_id: %s. Referer: %s. Using first: %s",
             module_id,
             course_id,
-            request.headers.get("referer", ""),
+            request.META.get("HTTP_REFERER", ""),
             str(items[0].location)
         )
 
@@ -2090,7 +2090,7 @@ def financial_assistance_request_v2(request):
             return HttpResponseForbidden()
 
         course_id = data['course']
-        if course_id and course_id not in request.headers.get('referer'):
+        if course_id and course_id not in request.META.get('HTTP_REFERER'):
             return HttpResponseBadRequest('Invalid Course ID provided.')
         lms_user_id = request.user.id
         income = data['income']

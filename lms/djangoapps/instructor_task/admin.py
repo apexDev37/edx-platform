@@ -42,15 +42,11 @@ class InstructorTaskAdmin(admin.ModelAdmin):  # lint-amnesty, pylint: disable=mi
     ]
     raw_id_fields = ['requester']  # avoid trying to make a select dropdown
 
-    @admin.display(
-        ordering='requester__email'
-    )
-    @admin.display(
-        ordering='requester__username'
-    )
+    @admin.display(ordering='requester__email')
     def email(self, task):
         return task.requester.email
 
+    @admin.display(ordering='requester__username')
     def username(self, task):
         return task.requester.username
 
