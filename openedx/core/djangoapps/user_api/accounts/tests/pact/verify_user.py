@@ -1,4 +1,6 @@
-
+"""
+User Verification Server for Profile Information
+"""
 import os
 import logging
 from django.test import LiveServerTestCase
@@ -7,7 +9,6 @@ from pact import Verifier
 
 from common.djangoapps.student.tests.factories import UserFactory
 from common.djangoapps.student.models import User
-from common.djangoapps.student.models import UserProfile
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
@@ -19,8 +20,10 @@ PACT_DIR = os.path.dirname(os.path.realpath(__file__))
 PACT_FILE = "frontend-app-profile-edx-platform.json"
 
 class ProviderState():
+    """ Provider State for the testing profile """
 
     def account_setup(self, request):
+        """ Sets up the Profile that we want to mock in accordance to our contract """
         User.objects.filter(username="staff").delete()
         user_acc = UserFactory.create(username = "staff")
         user_acc.profile.name = "Lemon Seltzer"
@@ -33,10 +36,11 @@ class ProviderState():
         user_acc.profile.mailing_address = "Park Ave"
         user_acc.profile.save()
         return user_acc
-    
+
 @csrf_exempt
 @require_POST
 def provider_state(request):
+    """ Provider State view for our verifier"""
     state_setup = {"I have a user's basic information": ProviderState().account_setup}
     request_body = json.loads(request.body)
     state = request_body.get('state')
@@ -56,7 +60,6 @@ class ProviderVerificationServer(LiveServerTestCase):
             provider='edx-platform',
             provider_base_url = cls.PACT_URL,
         )
-    
     @classmethod
     def tearDownClass(cls):
         super().tearDownClass()

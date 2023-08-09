@@ -2,10 +2,9 @@
 Contain the middleware logic needed during pact verification
 """
 from django.contrib import auth
-from django.contrib.auth.models import Permission
 from django.utils.deprecation import MiddlewareMixin
 
-User = auth.get_user_model()
+User  = auth.get_user_model()
 
 class AuthenticationMiddleware(MiddlewareMixin):
     """
@@ -18,9 +17,8 @@ class AuthenticationMiddleware(MiddlewareMixin):
     """
 
     def __init__(self, get_response):
-        super().__init__()
+        super().__init__(get_response)
         self.auth_user = User.objects.get_or_create(username='staff', is_staff=True)[0]
-        self.auth_user.user_permissions.set(Permission.objects.filter(content_type__app_label='edxval'))
         self.get_response = get_response
 
     def process_view(self, request, view_func, view_args, view_kwargs):  # pylint: disable=unused-argument
