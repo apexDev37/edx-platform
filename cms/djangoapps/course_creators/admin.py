@@ -26,11 +26,13 @@ from common.djangoapps.edxmako.shortcuts import render_to_string
 log = logging.getLogger("studio.coursecreatoradmin")
 
 
+@admin.display(
+    description='email'
+)
 def get_email(obj):
     """ Returns the email address for a user """
     return obj.user.email
 
-get_email.short_description = 'email'
 
 
 class CourseCreatorForm(forms.ModelForm):
@@ -64,6 +66,7 @@ class CourseCreatorForm(forms.ModelForm):
                 )
 
 
+@admin.register(CourseCreator)
 class CourseCreatorAdmin(admin.ModelAdmin):
     """
     Admin for the course creator table.
@@ -87,6 +90,9 @@ class CourseCreatorAdmin(admin.ModelAdmin):
     actions = None
     form = CourseCreatorForm
 
+    @admin.display(
+        ordering='user__username'
+    )
     def username(self, inst):
         """
         Returns the username for a given user.
@@ -95,7 +101,6 @@ class CourseCreatorAdmin(admin.ModelAdmin):
         """
         return inst.user.username
 
-    username.admin_order_field = 'user__username'
 
     def has_add_permission(self, request):
         return False
@@ -119,7 +124,6 @@ class CourseCreatorAdmin(admin.ModelAdmin):
             form.instance.organizations.clear()
 
 
-admin.site.register(CourseCreator, CourseCreatorAdmin)
 
 
 @receiver(update_creator_state, sender=CourseCreator)

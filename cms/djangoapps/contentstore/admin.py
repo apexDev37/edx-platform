@@ -24,6 +24,9 @@ from .tasks import update_outline_from_modulestore_task, update_all_outlines_fro
 log = logging.getLogger(__name__)
 
 
+@admin.action(
+    description=_("Regenerate selected course outlines")
+)
 def regenerate_course_outlines_subset(modeladmin, request, queryset):
     """
     Create a celery task to regenerate a single course outline for each passed-in course key.
@@ -46,18 +49,20 @@ def regenerate_course_outlines_subset(modeladmin, request, queryset):
         regenerates=regenerates
     )
     modeladmin.message_user(request, msg)
-regenerate_course_outlines_subset.short_description = _("Regenerate selected course outlines")
 
 
+@admin.action(
+    description=_("Regenerate *all* course outlines")
+)
 def regenerate_course_outlines_all(modeladmin, request, queryset):  # pylint: disable=unused-argument
     """
     Custom admin action which regenerates *all* the course outlines - no matter which CourseOverviews are selected.
     """
     update_all_outlines_from_modulestore_task.delay()
     modeladmin.message_user(request, _("All course outline regenerations successfully requested."))
-regenerate_course_outlines_all.short_description = _("Regenerate *all* course outlines")
 
 
+@admin.register(CourseOutlineRegenerate)
 class CourseOutlineRegenerateAdmin(ReadOnlyAdminMixin, admin.ModelAdmin):
     """
     Regenerates the course outline for each selected course key.
@@ -88,5 +93,4 @@ class CleanStaleCertificateAvailabilityDatesConfigAdmin(ConfigurationModelAdmin)
 
 admin.site.register(BackfillCourseTabsConfig, ConfigurationModelAdmin)
 admin.site.register(VideoUploadConfig, ConfigurationModelAdmin)
-admin.site.register(CourseOutlineRegenerate, CourseOutlineRegenerateAdmin)
 admin.site.register(CleanStaleCertificateAvailabilityDatesConfig, ConfigurationModelAdmin)
