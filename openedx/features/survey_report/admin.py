@@ -8,6 +8,7 @@ from .models import SurveyReport
 from .api import send_report_to_external_api
 
 
+@admin.register(SurveyReport)
 class SurveyReportAdmin(admin.ModelAdmin):
     """
     Admin to manage survey reports.
@@ -80,4 +81,3 @@ class SurveyReportAdmin(admin.ModelAdmin):
             del actions['delete_selected']
         return actions
 
-admin.site.register(SurveyReport, SurveyReportAdmin)

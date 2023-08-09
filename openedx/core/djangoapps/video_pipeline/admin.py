@@ -17,6 +17,7 @@ from openedx.core.djangoapps.video_pipeline.models import (
 )
 
 
+@admin.register(CourseVideoUploadsEnabledByDefault)
 class CourseVideoUploadsEnabledByDefaultAdmin(CourseSpecificEnabledFlagBaseAdmin):
     """
     Admin of video uploads enabled by default feature on course-by-course basis.
@@ -25,6 +26,7 @@ class CourseVideoUploadsEnabledByDefaultAdmin(CourseSpecificEnabledFlagBaseAdmin
     form = CourseVideoUploadsEnabledByDefaultAdminForm
 
 
+@admin.register(VEMPipelineIntegration)
 class VEMPipelineIntegrationAdmin(ConfigurationModelAdmin):
     """
     Admin of VEM Pipeline integration config model.
@@ -32,6 +34,4 @@ class VEMPipelineIntegrationAdmin(ConfigurationModelAdmin):
     form = VEMPipelineIntegrationAdminForm
 
 
-admin.site.register(VEMPipelineIntegration, VEMPipelineIntegrationAdmin)
 admin.site.register(VideoUploadsEnabledByDefault, ConfigurationModelAdmin)
-admin.site.register(CourseVideoUploadsEnabledByDefault, CourseVideoUploadsEnabledByDefaultAdmin)

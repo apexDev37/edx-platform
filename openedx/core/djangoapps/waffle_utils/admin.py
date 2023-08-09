@@ -11,6 +11,7 @@ from .forms import WaffleFlagCourseOverrideAdminForm, WaffleFlagOrgOverrideAdmin
 from .models import WaffleFlagCourseOverrideModel, WaffleFlagOrgOverrideModel
 
 
+@admin.register(WaffleFlagCourseOverrideModel)
 class WaffleFlagCourseOverrideAdmin(KeyedConfigurationModelAdmin):
     """
     Admin for course override of waffle flags.
@@ -29,6 +30,7 @@ class WaffleFlagCourseOverrideAdmin(KeyedConfigurationModelAdmin):
     )
 
 
+@admin.register(WaffleFlagOrgOverrideModel)
 class WaffleFlagOrgOverrideAdmin(KeyedConfigurationModelAdmin):
     """
     Admin for org override of waffle flags.
@@ -46,5 +48,3 @@ class WaffleFlagOrgOverrideAdmin(KeyedConfigurationModelAdmin):
         }),
     )
 
-admin.site.register(WaffleFlagCourseOverrideModel, WaffleFlagCourseOverrideAdmin)
-admin.site.register(WaffleFlagOrgOverrideModel, WaffleFlagOrgOverrideAdmin)

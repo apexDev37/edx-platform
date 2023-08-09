@@ -11,6 +11,7 @@ from openedx.core.djangoapps.config_model_utils.admin import StackedConfigModelA
 from .models import DiscountPercentageConfig, DiscountRestrictionConfig
 
 
+@admin.register(DiscountRestrictionConfig)
 class DiscountRestrictionConfigAdmin(StackedConfigModelAdmin):
     """
     Admin to configure discount restrictions
@@ -40,9 +41,9 @@ class DiscountRestrictionConfigAdmin(StackedConfigModelAdmin):
     )
     raw_id_fields = ('course',)
 
-admin.site.register(DiscountRestrictionConfig, DiscountRestrictionConfigAdmin)
 
 
+@admin.register(DiscountPercentageConfig)
 class DiscountPercentageConfigAdmin(StackedConfigModelAdmin):
     """
     Admin to configure discount percentage
@@ -63,4 +64,3 @@ class DiscountPercentageConfigAdmin(StackedConfigModelAdmin):
     )
     raw_id_fields = ('course',)
 
-admin.site.register(DiscountPercentageConfig, DiscountPercentageConfigAdmin)

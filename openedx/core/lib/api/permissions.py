@@ -32,7 +32,7 @@ class ApiKeyHeaderPermission(permissions.BasePermission):
         """
         api_key = getattr(settings, "EDX_API_KEY", None)
 
-        if api_key is not None and request.META.get("HTTP_X_EDX_API_KEY") == api_key:
+        if api_key is not None and request.headers.get("x-edx-api-key") == api_key:
             audit_log("ApiKeyHeaderPermission used",
                       path=request.path,
                       ip=request.META.get("REMOTE_ADDR"))

@@ -17,7 +17,7 @@ def is_request_from_mobile_app(request):
         request (HttpRequest)
     """
     if getattr(settings, 'MOBILE_APP_USER_AGENT_REGEXES', None):
-        user_agent = request.META.get('HTTP_USER_AGENT')
+        user_agent = request.headers.get('user-agent')
         if user_agent:
             for user_agent_regex in settings.MOBILE_APP_USER_AGENT_REGEXES:
                 if re.search(user_agent_regex, user_agent):

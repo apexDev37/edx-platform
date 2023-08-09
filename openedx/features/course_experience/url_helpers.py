@@ -209,4 +209,4 @@ def is_request_from_learning_mfe(request: HttpRequest):
 
     url = urlparse(settings.LEARNING_MICROFRONTEND_URL)
     mfe_url_base = f'{url.scheme}://{url.netloc}'
-    return request.META.get('HTTP_REFERER', '').startswith(mfe_url_base)
+    return request.headers.get('referer', '').startswith(mfe_url_base)

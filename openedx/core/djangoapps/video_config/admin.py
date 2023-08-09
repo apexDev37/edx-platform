@@ -38,6 +38,7 @@ class CourseSpecificEnabledFlagBaseAdmin(KeyedConfigurationModelAdmin):
     )
 
 
+@admin.register(CourseHLSPlaybackEnabledFlag)
 class CourseHLSPlaybackEnabledFlagAdmin(CourseSpecificEnabledFlagBaseAdmin):
     """
     Admin of HLS Playback feature on course-by-course basis.
@@ -46,6 +47,7 @@ class CourseHLSPlaybackEnabledFlagAdmin(CourseSpecificEnabledFlagBaseAdmin):
     form = CourseHLSPlaybackFlagAdminForm
 
 
+@admin.register(CourseYoutubeBlockedFlag)
 class CourseYoutubeBlockedFlagAdmin(CourseSpecificEnabledFlagBaseAdmin):
     """
     Admin of youtube blocking feature on course-by-course basis.
@@ -54,6 +56,7 @@ class CourseYoutubeBlockedFlagAdmin(CourseSpecificEnabledFlagBaseAdmin):
     form = CourseYoutubeBlockedFlagAdminForm
 
 
+@admin.register(CourseVideoTranscriptEnabledFlag)
 class CourseVideoTranscriptEnabledFlagAdmin(CourseSpecificEnabledFlagBaseAdmin):
     """
     Admin of Video Transcript feature on course-by-course basis.
@@ -62,6 +65,7 @@ class CourseVideoTranscriptEnabledFlagAdmin(CourseSpecificEnabledFlagBaseAdmin):
     form = CourseVideoTranscriptFlagAdminForm
 
 
+@admin.register(MigrationEnqueuedCourse)
 class MigrationEnqueuedCourseAdmin(admin.ModelAdmin):
     """
     Simple, read-only list/search view of the Courses whose transcripts have been migrated to S3.
@@ -74,6 +78,7 @@ class MigrationEnqueuedCourseAdmin(admin.ModelAdmin):
     search_fields = ['course_id', 'command_run']
 
 
+@admin.register(UpdatedCourseVideos)
 class UpdatedCourseVideosAdmin(admin.ModelAdmin):
     """
     Read-only list/search view of the videos whose thumbnails have been updated.
@@ -88,11 +93,6 @@ class UpdatedCourseVideosAdmin(admin.ModelAdmin):
 
 
 admin.site.register(HLSPlaybackEnabledFlag, ConfigurationModelAdmin)
-admin.site.register(CourseHLSPlaybackEnabledFlag, CourseHLSPlaybackEnabledFlagAdmin)
-admin.site.register(CourseYoutubeBlockedFlag, CourseYoutubeBlockedFlagAdmin)
 admin.site.register(VideoTranscriptEnabledFlag, ConfigurationModelAdmin)
-admin.site.register(CourseVideoTranscriptEnabledFlag, CourseVideoTranscriptEnabledFlagAdmin)
 admin.site.register(TranscriptMigrationSetting, ConfigurationModelAdmin)
-admin.site.register(MigrationEnqueuedCourse, MigrationEnqueuedCourseAdmin)
 admin.site.register(VideoThumbnailSetting, ConfigurationModelAdmin)
-admin.site.register(UpdatedCourseVideos, UpdatedCourseVideosAdmin)

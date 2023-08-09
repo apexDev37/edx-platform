@@ -41,7 +41,7 @@ def get_legacy_ip(request):
     Always picks the leftmost IP in the X-Forwarded-For header, if present,
     otherwise returns the original REMOTE_ADDR.
     """
-    if xff := request.META.get('HTTP_X_FORWARDED_FOR'):
+    if xff := request.headers.get('x-forwarded-for'):
         return xff.split(',')[0].strip()
     else:
         # Might run before or after XForwardedForMiddleware.

@@ -60,8 +60,8 @@ class RequestUtilTestCase(unittest.TestCase):
         assert safe_get_host(request) == 'siteName.com'
 
         # If ALLOWED_HOSTS is set properly, and the host is valid, we just return the user-provided host
-        settings.ALLOWED_HOSTS = [request.META['HTTP_HOST']]
-        assert safe_get_host(request) == request.META['HTTP_HOST']
+        settings.ALLOWED_HOSTS = [request.headers['host']]
+        assert safe_get_host(request) == request.headers['host']
 
         # If ALLOWED_HOSTS is set properly but the host is invalid, we should get a SuspiciousOperation
         settings.ALLOWED_HOSTS = ["the_valid_website.com"]
