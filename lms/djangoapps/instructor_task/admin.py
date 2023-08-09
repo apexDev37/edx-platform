@@ -23,7 +23,6 @@ def mark_tasks_as_failed(modeladmin, request, queryset):  # lint-amnesty, pylint
     )
 
 
-
 @admin.register(InstructorTask)
 class InstructorTaskAdmin(admin.ModelAdmin):  # lint-amnesty, pylint: disable=missing-class-docstring
     actions = [mark_tasks_as_failed]
