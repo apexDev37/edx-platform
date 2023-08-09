@@ -11,6 +11,7 @@ from django.contrib import admin
 from .models import CourseOverview, CourseOverviewImageConfig, CourseOverviewImageSet, SimulateCoursePublishConfig
 
 
+@admin.register(CourseOverview)
 class CourseOverviewAdmin(admin.ModelAdmin):
     """
     Simple, read-only list/search view of Course Overviews.
@@ -28,6 +29,7 @@ class CourseOverviewAdmin(admin.ModelAdmin):
     search_fields = ['id', 'display_name']
 
 
+@admin.register(CourseOverviewImageConfig)
 class CourseOverviewImageConfigAdmin(ConfigurationModelAdmin):
     """
     Basic configuration for CourseOverview Image thumbnails.
@@ -58,6 +60,7 @@ class CourseOverviewImageConfigAdmin(ConfigurationModelAdmin):
         return self.list_display
 
 
+@admin.register(CourseOverviewImageSet)
 class CourseOverviewImageSetAdmin(admin.ModelAdmin):
     """
     Thumbnail images associated with CourseOverviews. This should be used for
@@ -73,11 +76,8 @@ class CourseOverviewImageSetAdmin(admin.ModelAdmin):
     fields = ('course_overview_id', 'small_url', 'large_url')
 
 
+@admin.register(SimulateCoursePublishConfig)
 class SimulateCoursePublishConfigAdmin(ConfigurationModelAdmin):
     pass
 
 
-admin.site.register(CourseOverview, CourseOverviewAdmin)
-admin.site.register(CourseOverviewImageConfig, CourseOverviewImageConfigAdmin)
-admin.site.register(CourseOverviewImageSet, CourseOverviewImageSetAdmin)
-admin.site.register(SimulateCoursePublishConfig, SimulateCoursePublishConfigAdmin)

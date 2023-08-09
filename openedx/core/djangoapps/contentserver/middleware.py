@@ -119,8 +119,8 @@ class StaticContentServer(MiddlewareMixin):
             # Figure out if the client sent us a conditional request, and let them know
             # if this asset has changed since then.
             last_modified_at_str = content.last_modified_at.strftime(HTTP_DATE_FORMAT)
-            if 'HTTP_IF_MODIFIED_SINCE' in request.META:
-                if_modified_since = request.META['HTTP_IF_MODIFIED_SINCE']
+            if 'if-modified-since' in request.headers:
+                if_modified_since = request.headers['if-modified-since']
                 if if_modified_since == last_modified_at_str:
                     return HttpResponseNotModified()
 
@@ -131,12 +131,12 @@ class StaticContentServer(MiddlewareMixin):
             # Response -> Content-Range attribute structure: "Content-Range: bytes first-last/totalLength"
             # http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35
             response = None
-            if request.META.get('HTTP_RANGE'):
+            if request.headers.get('range'):
                 # If we have a StaticContent, get a StaticContentStream.  Can't manipulate the bytes otherwise.
                 if isinstance(content, StaticContent):
                     content = AssetManager.find(loc, as_stream=True)
 
-                header_value = request.META['HTTP_RANGE']
+                header_value = request.headers['range']
                 try:
                     unit, ranges = parse_range_header(header_value, content.length)
                 except ValueError as exception:
@@ -240,7 +240,7 @@ class StaticContentServer(MiddlewareMixin):
         be expanded in the future.
         """
         cdn_user_agents = CdnUserAgentsConfig.get_cdn_user_agents()
-        user_agent = request.META.get('HTTP_USER_AGENT', '')
+        user_agent = request.headers.get('user-agent', '')
         if user_agent in cdn_user_agents:
             # This is a CDN request.
             return True

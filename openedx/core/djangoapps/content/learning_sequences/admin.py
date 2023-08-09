@@ -108,6 +108,7 @@ class CourseSectionSequenceInline(admin.TabularInline):
         return cs_seq.exam.is_practice_exam
 
 
+@admin.register(CourseContext)
 class CourseContextAdmin(admin.ModelAdmin):
     """
     This is a read-only model admin that is meant to be useful for querying.
@@ -326,4 +327,3 @@ class CourseContextAdmin(admin.ModelAdmin):
         return False
 
 
-admin.site.register(CourseContext, CourseContextAdmin)

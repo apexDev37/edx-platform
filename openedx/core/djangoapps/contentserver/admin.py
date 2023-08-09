@@ -10,6 +10,7 @@ from django.contrib import admin
 from .models import CdnUserAgentsConfig, CourseAssetCacheTtlConfig
 
 
+@admin.register(CourseAssetCacheTtlConfig)
 class CourseAssetCacheTtlConfigAdmin(ConfigurationModelAdmin):
     """
     Basic configuration for cache TTL.
@@ -29,6 +30,7 @@ class CourseAssetCacheTtlConfigAdmin(ConfigurationModelAdmin):
         return self.list_display
 
 
+@admin.register(CdnUserAgentsConfig)
 class CdnUserAgentsConfigAdmin(ConfigurationModelAdmin):
     """
     Basic configuration for CDN user agent whitelist.
@@ -48,5 +50,3 @@ class CdnUserAgentsConfigAdmin(ConfigurationModelAdmin):
         return self.list_display
 
 
-admin.site.register(CourseAssetCacheTtlConfig, CourseAssetCacheTtlConfigAdmin)
-admin.site.register(CdnUserAgentsConfig, CdnUserAgentsConfigAdmin)

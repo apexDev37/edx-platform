@@ -9,6 +9,7 @@ from django.contrib import admin
 from .config.models import BlockStructureConfiguration
 
 
+@admin.register(BlockStructureConfiguration)
 class BlockStructureAdmin(ConfigurationModelAdmin):
     """
     Configuration Admin for BlockStructureConfiguration.
@@ -22,4 +23,3 @@ class BlockStructureAdmin(ConfigurationModelAdmin):
         return displayable_field_names
 
 
-admin.site.register(BlockStructureConfiguration, BlockStructureAdmin)

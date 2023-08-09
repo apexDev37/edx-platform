@@ -9,6 +9,7 @@ from openedx.core.djangoapps.agreements.models import LTIPIISignature
 from openedx.core.djangoapps.agreements.models import ProctoringPIISignature
 
 
+@admin.register(IntegritySignature)
 class IntegritySignatureAdmin(admin.ModelAdmin):
     """
     Admin for the IntegritySignature Model
@@ -22,9 +23,9 @@ class IntegritySignatureAdmin(admin.ModelAdmin):
         model = IntegritySignature
 
 
-admin.site.register(IntegritySignature, IntegritySignatureAdmin)
 
 
+@admin.register(LTIPIITool)
 class LTIPIIToolAdmin(admin.ModelAdmin):
     """
     Admin for the LTIPIITool Model
@@ -35,9 +36,9 @@ class LTIPIIToolAdmin(admin.ModelAdmin):
         model = LTIPIITool
 
 
-admin.site.register(LTIPIITool, LTIPIIToolAdmin)
 
 
+@admin.register(LTIPIISignature)
 class LTIPIISignatureAdmin(admin.ModelAdmin):
     """
     Admin for the LTIPIISignature Model
@@ -48,9 +49,9 @@ class LTIPIISignatureAdmin(admin.ModelAdmin):
         model = LTIPIISignature
 
 
-admin.site.register(LTIPIISignature, LTIPIISignatureAdmin)
 
 
+@admin.register(ProctoringPIISignature)
 class ProctoringPIISignatureAdmin(admin.ModelAdmin):
     """
     Admin for the ProctoringPIISignature Model
@@ -61,4 +62,3 @@ class ProctoringPIISignatureAdmin(admin.ModelAdmin):
         model = ProctoringPIISignature
 
 
-admin.site.register(ProctoringPIISignature, ProctoringPIISignatureAdmin)

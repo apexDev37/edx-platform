@@ -25,7 +25,7 @@ def is_cross_domain_request_allowed(request):
         bool
 
     """
-    referer = request.META.get('HTTP_REFERER')
+    referer = request.headers.get('referer')
     referer_parts = urllib.parse.urlparse(referer) if referer else None
 
     # Use CORS_ALLOW_INSECURE *only* for development and testing environments;

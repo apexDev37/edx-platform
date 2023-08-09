@@ -7,6 +7,7 @@ from django.contrib import admin
 from .models import CourseAppStatus
 
 
+@admin.register(CourseAppStatus)
 class CourseAppStatusAdmin(admin.ModelAdmin):
     """Admin for CourseAppStatus"""
     search_fields = ('course_key', )
@@ -14,4 +15,3 @@ class CourseAppStatusAdmin(admin.ModelAdmin):
     list_filter = ('app_id',)
 
 
-admin.site.register(CourseAppStatus, CourseAppStatusAdmin)
