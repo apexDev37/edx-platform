@@ -34,7 +34,6 @@ def get_email(obj):
     return obj.user.email
 
 
-
 class CourseCreatorForm(forms.ModelForm):
     """
     Admin form for course creator
@@ -101,7 +100,6 @@ class CourseCreatorAdmin(admin.ModelAdmin):
         """
         return inst.user.username
 
-
     def has_add_permission(self, request):
         return False
 
@@ -122,8 +120,6 @@ class CourseCreatorAdmin(admin.ModelAdmin):
         state = form.instance.state
         if state != CourseCreator.GRANTED:
             form.instance.organizations.clear()
-
-
 
 
 @receiver(update_creator_state, sender=CourseCreator)
