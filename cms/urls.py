@@ -76,7 +76,7 @@ urlpatterns = oauth2_urlpatterns + [
     path('api/user/', include('openedx.core.djangoapps.user_api.urls')),
 
     # Update session view
-    path('lang_pref/cookie_language', openedx.core.djangoapps.lang_pref.views.update_cookie_language,
+    path('lang_pref/cookie_language', openedx.core.djangoapps.lang_pref.views.update_language,
          name='cookie_language'
          ),
 
