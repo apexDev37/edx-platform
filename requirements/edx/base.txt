@@ -399,7 +399,7 @@ djangorestframework==3.14.0
     #   super-csv
 djangorestframework-xml==2.0.0
     # via edx-enterprise
-django-fernet-fields-v2==0.8
+djfernet==0.8.1
     # via edxval
 docutils==0.19
     # via

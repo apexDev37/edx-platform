@@ -633,7 +633,7 @@ djangorestframework-xml==2.0.0
     #   -r requirements/edx/doc.txt
     #   -r requirements/edx/testing.txt
     #   edx-enterprise
-django-fernet-fields-v2==0.8
+djfernet==0.8.1
     # via
     #   -r requirements/edx/doc.txt
     #   -r requirements/edx/testing.txt
