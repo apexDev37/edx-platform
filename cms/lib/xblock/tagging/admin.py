@@ -19,5 +19,3 @@ class TagCategoriesAdmin(admin.ModelAdmin):
 class TagAvailableValuesAdmin(admin.ModelAdmin):
     """Admin for TagAvailableValues"""
     list_display = ('id', 'category', 'value')
-
-
