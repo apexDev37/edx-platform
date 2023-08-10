@@ -48,5 +48,3 @@ class AssetExcludedExtensionsConfigAdmin(ConfigurationModelAdmin):
         way.
         """
         return self.list_display
-
-
