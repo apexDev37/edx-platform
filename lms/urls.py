@@ -1052,5 +1052,5 @@ urlpatterns += [
 
 # Customida DjangoApp
 urlpatterns += [
-    path('customida/', include('lms.features.customida.urls')),
+    path('customida/', include('lms.features.custom_ida.urls')),
 ]

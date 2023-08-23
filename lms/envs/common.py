@@ -3272,7 +3272,7 @@ INSTALLED_APPS = [
     'openedx.core.djangoapps.notifications',
     
     # Customida Demo
-    'lms.features.customida',
+    'lms.features.custom_ida',
 ]
 
 ######################### CSRF #########################################
