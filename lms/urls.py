@@ -1049,3 +1049,8 @@ urlpatterns += [
 urlpatterns += [
     path('api/notifications/', include('openedx.core.djangoapps.notifications.urls')),
 ]
+
+# Customida DjangoApp
+urlpatterns += [
+    path('customida/', include('lms.features.customida.urls')),
+]
